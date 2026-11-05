@@ -1,7 +1,8 @@
-# MASALA · épices
+# MASALA · epices audio
 
 Synthé wavetable de poche pensé pour la **bass music** (dubstep, riddim, tribe, deep/dub, halftime),
-avec la direction artistique **épices** : fond poivre noir, accents safran / paprika / curcuma, grain chaud.
+dans la DA **epices audio** : orange `#F2541B`, noir `#1E1B16`, police Bricolage Grotesque, symbole aux deux
+anneaux (repris dans les potards : un anneau et un point qui indique la valeur). Fichiers de marque dans `app/brand/`.
 
 On fait son sound design sur le téléphone, on enregistre, et le preset arrive dans le plugin **VST3 / AU**
 pour Ableton, Logic, FL Studio… grâce au compte épices.
@@ -62,7 +63,7 @@ par une vraie base de données avant un lancement public.
 2. Enregistre tes presets : ils partent sur ton compte.
 3. Dans le plugin : **Compte → Serveur** (l'URL de ton serveur), puis **Compte → Entrer le code du téléphone**.
 4. Sur le téléphone : ☁︎ → **Générer un code** → tape les 6 chiffres dans le plugin.
-5. Tes presets apparaissent dans le menu du plugin, rubrique *Compte épices (cloud)*.
+5. Tes presets apparaissent dans le menu du plugin, rubrique *Compte epices (cloud)*.
    Les presets enregistrés dans le plugin repartent vers le téléphone à la synchro suivante.
 
 Hors-ligne aussi : **Exporter fichier** (téléphone) produit un `.masala`, que le plugin importe
@@ -100,6 +101,7 @@ Après modification des paramètres ou des presets : `npm run build && npm test`
 - **App Store** : la PWA est la voie la plus rapide pour tester sur iPhone. Pour une vraie appli iOS
   (et un **AUv3** utilisable dans GarageBand / Cubasis), le moteur C++ et `PluginEditor` se réutilisent
   tels quels dans une cible JUCE iOS/AUv3.
-- Remplacer le logo texte par les fichiers officiels de la charte épices (police, logo, couleurs exactes) :
-  tout est centralisé dans `app/css/style.css` (`:root`) et `epices::` dans `PluginEditor.h`.
+- Embarquer la police Bricolage Grotesque (licence OFL) dans le plugin : pour l'instant il utilise la police
+  système, l'appli la charge depuis Google Fonts. Couleurs centralisées dans `app/css/style.css` (`:root`)
+  et `epices::` dans `PluginEditor.h`.
 - Import de wavetables utilisateur, oscillateur à formants, multibande pour le Squash.

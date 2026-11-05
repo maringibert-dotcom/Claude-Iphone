@@ -5,21 +5,18 @@
 
 namespace epices
 {
-// palette « épices »
-const juce::Colour poivre   { 0xff140f0b };
-const juce::Colour torref   { 0xff1d1611 };
-const juce::Colour cannelle { 0xff2a1f17 };
-const juce::Colour cacao    { 0xff3a2b20 };
-const juce::Colour line     { 0xff4a3727 };
-const juce::Colour creme    { 0xfff4e7d1 };
-const juce::Colour sable    { 0xffbfa88a };
-const juce::Colour muted    { 0xff8a7560 };
-const juce::Colour safran   { 0xfff2a516 };
-const juce::Colour paprika  { 0xffe0522a };
-const juce::Colour piment   { 0xffc42b2b };
-const juce::Colour curcuma  { 0xffe8c020 };
-const juce::Colour cardamome{ 0xff9bb35f };
-const juce::Colour badiane  { 0xff8a6bd1 };
+// palette epices audio (DA officielle : orange #F2541B, noir #1E1B16)
+const juce::Colour orange   { 0xfff2541b };
+const juce::Colour orangeVif{ 0xffff7a45 };
+const juce::Colour peche    { 0xfff7a072 };
+const juce::Colour noir     { 0xff1e1b16 };
+const juce::Colour encre    { 0xff151310 };
+const juce::Colour noir2    { 0xff28241e };
+const juce::Colour noir3    { 0xff36302a };
+const juce::Colour line     { 0xff433b32 };
+const juce::Colour papier   { 0xfff3ede4 };
+const juce::Colour sable    { 0xffbdb2a3 };
+const juce::Colour muted    { 0xff857a6c };
 
 class LookAndFeel : public juce::LookAndFeel_V4
 {

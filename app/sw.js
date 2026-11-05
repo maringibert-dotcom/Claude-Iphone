@@ -1,5 +1,5 @@
 // Service worker : MASALA fonctionne hors-ligne une fois chargé.
-const CACHE = "masala-v1";
+const CACHE = "masala-v2";
 const CORE = [
   "./", "./index.html", "./css/style.css", "./js/dsp.js", "./js/ui.js", "./js/cloud.js", "./js/app.js",
   "./manifest.webmanifest", "./icons/icon.svg", "./icons/icon-180.png", "./icons/icon-192.png",

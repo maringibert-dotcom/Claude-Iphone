@@ -1,4 +1,4 @@
-// MASALA — client du compte épices (synchronisation des presets).
+// MASALA — client du compte epices (synchronisation des presets).
 (function (G) {
   "use strict";
   const KEY = "masala.cloud";

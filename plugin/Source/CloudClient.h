@@ -3,7 +3,7 @@
 #include <JuceHeader.h>
 #include "PresetManager.h"
 
-// Client du « compte épices » : appairage par code, connexion, synchro des presets.
+// Client du « compte epices » : appairage par code, connexion, synchro des presets.
 // Les requêtes tournent sur un thread de fond ; les callbacks reviennent sur le thread message.
 class CloudClient
 {

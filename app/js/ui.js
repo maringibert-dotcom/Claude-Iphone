@@ -76,7 +76,7 @@
     defsInjected = true;
     const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     s.setAttribute("width", "0"); s.setAttribute("height", "0"); s.style.position = "absolute";
-    s.innerHTML = `<defs><radialGradient id="capGrad" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#5a4330"/><stop offset="1" stop-color="#1d1611"/></radialGradient></defs>`;
+    s.innerHTML = "";
     document.body.appendChild(s);
   }
 
@@ -86,9 +86,9 @@
     const d = store.defs[id];
     const root = el("div", "knob");
     const bipolar = d.min < 0 && d.max > 0;
-    root.innerHTML = `<svg viewBox="0 0 60 60"><path class="track"/><path class="arc"/><path class="modarc"/><circle class="cap" cx="30" cy="30" r="17"/><line class="needle" x1="30" y1="30" x2="30" y2="17"/></svg><div class="val"></div><div class="lbl"></div>`;
+    root.innerHTML = `<svg viewBox="0 0 60 60"><path class="track"/><path class="arc"/><path class="modarc"/><circle class="cap" cx="30" cy="30" r="15"/><circle class="dot" cx="30" cy="22" r="3.6"/></svg><div class="val"></div><div class="lbl"></div>`;
     const [track, arcEl, modEl] = root.querySelectorAll("path");
-    const needle = root.querySelector(".needle");
+    const dot = root.querySelector(".dot");
     const valEl = root.querySelector(".val"), lblEl = root.querySelector(".lbl");
     track.setAttribute("d", arc(30, 30, 25, A0, A1));
     lblEl.textContent = opts.label || d.name;
@@ -98,8 +98,8 @@
       norm = toNorm(d, v);
       const a = A0 + norm * (A1 - A0), z = A0 + zero * (A1 - A0);
       arcEl.setAttribute("d", arc(30, 30, 25, Math.min(a, z), Math.max(a, z)));
-      const [x, y] = polar(30, 30, 14, a);
-      needle.setAttribute("x2", x.toFixed(2)); needle.setAttribute("y2", y.toFixed(2));
+      const [x, y] = polar(30, 30, 7.5, a);
+      dot.setAttribute("cx", x.toFixed(2)); dot.setAttribute("cy", y.toFixed(2));
       valEl.textContent = opts.format ? opts.format(v) : fmt(d, v);
     }
     store.on(id, draw);

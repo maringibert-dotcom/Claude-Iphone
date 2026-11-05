@@ -1,14 +1,15 @@
-// MASALA · épices — application principale.
+// MASALA · epices audio — application principale.
 (async function () {
   "use strict";
   const { Store, Knob, Seg, Pick, Toggle, BiSlider, el, toNorm } = window.MasalaUI;
   const Cloud = window.MasalaCloud;
   const $ = (s) => document.querySelector(s);
 
+  // catégories : déclinaisons de l'orange de la marque + le papier
   const CAT_COLORS = {
-    "Dubstep": "var(--paprika)", "Riddim": "var(--piment)", "Tribe": "var(--curcuma)",
-    "Deep / Dub": "var(--cardamome)", "Halftime": "var(--safran)", "Leads & Pads": "var(--vanille)",
-    "FX": "var(--badiane)", "Mes presets": "var(--creme)",
+    "Dubstep": "var(--orange)", "Riddim": "var(--orange-vif)", "Tribe": "var(--peche)",
+    "Deep / Dub": "var(--orange-sombre)", "Halftime": "#FFB38A", "Leads & Pads": "var(--papier)",
+    "FX": "var(--sable)", "Mes presets": "var(--papier)",
   };
 
   // ───────── Chargement des données partagées ─────────
@@ -287,7 +288,7 @@
   }
   const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
   const COL = {};
-  ["--safran", "--paprika", "--curcuma", "--cardamome", "--badiane", "--creme", "--line", "--muted"].forEach((v) => (COL[v] = css(v)));
+  ["--orange", "--papier", "--line", "--muted", "--noir-3"].forEach((v) => (COL[v] = css(v)));
 
   const mval = (dest) => (liveMod ? liveMod[D[dest]] || 0 : 0);
 
@@ -296,7 +297,7 @@
     const f = fit(cv); if (!f) return;
     const { g, w, h } = f;
     const p = `osc${o}.`;
-    const color = o === "A" ? COL["--safran"] : COL["--paprika"];
+    const color = o === "A" ? COL["--orange"] : COL["--papier"];
     if (!preview) preview = new window.MasalaDSP.Engine(spec, 44100);
     const table = store.get(p + "table"), wm = store.get(p + "warpMode");
     const pos = Math.min(1, Math.max(0, store.get(p + "pos") + mval(`Osc ${o} Pos`)));
@@ -311,7 +312,7 @@
         const x = 14 + ox + (i / (N - 1)) * (w - 64), y = h * 0.58 + oy - d[i] * h * 0.3;
         i ? g.lineTo(x, y) : g.moveTo(x, y);
       }
-      g.strokeStyle = COL["--line"]; g.globalAlpha = 0.6; g.lineWidth = 1; g.stroke();
+      g.strokeStyle = COL["--noir-3"]; g.globalAlpha = 1; g.lineWidth = 1.2; g.stroke();
     }
     g.globalAlpha = 1;
     const d = preview.framePreview(table, pos, wm, warp, N);
@@ -321,8 +322,8 @@
       const x = 14 + ox + (i / (N - 1)) * (w - 64), y = h * 0.58 + oy - d[i] * h * 0.3;
       i ? g.lineTo(x, y) : g.moveTo(x, y);
     }
-    g.strokeStyle = color; g.lineWidth = 2.2; g.shadowColor = color; g.shadowBlur = 10; g.stroke(); g.shadowBlur = 0;
-    g.fillStyle = COL["--muted"]; g.font = "10px DM Mono, monospace";
+    g.strokeStyle = color; g.lineWidth = 3; g.lineJoin = "round"; g.stroke();
+    g.fillStyle = COL["--muted"]; g.font = "600 11px 'Bricolage Grotesque', sans-serif";
     g.fillText(spec.tables[table].toUpperCase() + "  ·  " + Math.round(pos * 100) + "%", 10, h - 8);
   }
 
@@ -358,13 +359,13 @@
       const y = yOf(20 * Math.log10(Math.max(1e-6, mag)));
       x ? g.lineTo(x, y) : g.moveTo(x, y);
     }
-    const col = COL["--paprika"];
-    g.strokeStyle = col; g.lineWidth = 2.2; g.shadowColor = col; g.shadowBlur = 10; g.stroke(); g.shadowBlur = 0;
+    const col = COL["--orange"];
+    g.strokeStyle = col; g.lineWidth = 3; g.stroke();
     g.lineTo(w, h); g.lineTo(0, h); g.closePath();
     const grad = g.createLinearGradient(0, 0, 0, h);
-    grad.addColorStop(0, "rgba(224,82,42,.35)"); grad.addColorStop(1, "rgba(224,82,42,0)");
+    grad.addColorStop(0, "rgba(242,84,27,.45)"); grad.addColorStop(1, "rgba(242,84,27,.05)");
     g.fillStyle = grad; g.fill();
-    g.fillStyle = COL["--muted"]; g.font = "10px DM Mono, monospace";
+    g.fillStyle = COL["--muted"]; g.font = "600 11px 'Bricolage Grotesque', sans-serif";
     g.fillText(spec.params[store.index["filter.type"]].choices[type] + "  ·  " + (fc >= 1000 ? (fc / 1000).toFixed(2) + " kHz" : Math.round(fc) + " Hz"), 10, h - 8);
   }
 
@@ -381,8 +382,8 @@
     for (let i = 1; i <= 20; i++) { const t = i / 20; g.lineTo(x + wd * t, yS + (top - yS) * Math.exp(-t * 4)); }
     x += wd; g.lineTo(x + ws, yS); x += ws;
     for (let i = 1; i <= 20; i++) { const t = i / 20; g.lineTo(x + wr * t, bot - (bot - yS) * Math.exp(-t * 4)); }
-    const col = e === "env1" ? COL["--cardamome"] : COL["--badiane"];
-    g.strokeStyle = col; g.lineWidth = 2; g.shadowColor = col; g.shadowBlur = 8; g.stroke(); g.shadowBlur = 0;
+    const col = e === "env1" ? COL["--orange"] : COL["--papier"];
+    g.strokeStyle = col; g.lineWidth = 3; g.lineJoin = "round"; g.stroke();
   }
 
   const lfoT0 = performance.now();
@@ -402,7 +403,7 @@
         default: { const s = Math.floor(ph * 8); return ((Math.sin(s * 12.9898) * 43758.5453) % 1 + 1) % 1; }
       }
     };
-    const col = l === "lfo1" ? COL["--curcuma"] : COL["--badiane"];
+    const col = l === "lfo1" ? COL["--orange"] : COL["--papier"];
     const top = 8, bot = h - 8;
     g.beginPath();
     for (let x = 0; x <= w; x += 2) {
@@ -410,12 +411,12 @@
       const y = bot - val(shape === 5 ? (x / w) : ph) * (bot - top);
       x ? g.lineTo(x, y) : g.moveTo(x, y);
     }
-    g.strokeStyle = col; g.lineWidth = 2; g.stroke();
+    g.strokeStyle = col; g.lineWidth = 3; g.stroke();
     const ph = (((performance.now() - lfoT0) / 1000) * rate) % 1;
     const x = (ph / 2) * w, y = bot - val(shape === 5 ? ph / 2 : ph) * (bot - top);
-    g.fillStyle = col; g.shadowColor = col; g.shadowBlur = 12;
-    g.beginPath(); g.arc(x, y, 4, 0, Math.PI * 2); g.fill(); g.shadowBlur = 0;
-    g.fillStyle = COL["--muted"]; g.font = "10px DM Mono, monospace";
+    g.fillStyle = "#1E1B16"; g.strokeStyle = col; g.lineWidth = 3;
+    g.beginPath(); g.arc(x, y, 6, 0, Math.PI * 2); g.fill(); g.stroke();
+    g.fillStyle = COL["--muted"]; g.font = "600 11px 'Bricolage Grotesque', sans-serif";
     g.fillText(sync ? spec.divs[store.get(l + ".div")] : rate.toFixed(2) + " Hz", w - 60, 14);
   }
 
@@ -471,7 +472,7 @@
     $("#preset-title").textContent = pr.name;
     const cat = pr.category || "Mes presets";
     $("#preset-cat").textContent = cat;
-    $("#preset-cat").style.setProperty("--cat", CAT_COLORS[cat] || "var(--creme)");
+    $("#preset-cat").style.setProperty("--cat", CAT_COLORS[cat] || "var(--papier)");
     setMacroNames(pr.macros || []);
     localStorage.setItem("masala.current", pr.id);
     dirty = true;
@@ -511,7 +512,7 @@
     fl.innerHTML = "";
     cats.forEach((c) => {
       const b = el("button", c === filter ? "on" : "", c);
-      b.style.setProperty("--cat", CAT_COLORS[c] || "var(--safran)");
+      b.style.setProperty("--cat", CAT_COLORS[c] || "var(--orange)");
       b.onclick = () => { filter = c; renderList(); };
       fl.appendChild(b);
     });
@@ -527,7 +528,7 @@
     for (const p of items) {
       const isUser = !p.id.startsWith("factory-");
       const it = el("div", "preset-item" + (current && current.id === p.id ? " current" : ""));
-      it.style.setProperty("--cat", CAT_COLORS[p.category] || "var(--creme)");
+      it.style.setProperty("--cat", CAT_COLORS[p.category] || "var(--papier)");
       it.innerHTML = `<span class="sw"></span><span class="t"><b></b><small></small></span>`;
       it.querySelector("b").textContent = p.name;
       it.querySelector("small").textContent = `${p.category} · ${(p.tags || []).slice(0, 3).join(", ")}`;
@@ -560,7 +561,7 @@
     $("#save-name").value = isUser ? current.name : (current ? current.name + " (moi)" : "Mon preset");
     catSel.value = (current && current.category) || "Mes presets";
     macroNames.forEach((n, i) => ($("#save-m" + (i + 1)).value = n));
-    $("#save-hint").textContent = Cloud.loggedIn ? "Sera aussi envoyé sur ton compte épices." : "Connecte-toi pour le retrouver dans le plugin.";
+    $("#save-hint").textContent = Cloud.loggedIn ? "Sera aussi envoyé sur ton compte epices." : "Connecte-toi pour le retrouver dans le plugin.";
     show($("#sheet-save"));
   };
   function readMacroInputs() { [1, 2, 3, 4].forEach((i) => (macroNames[i - 1] = $("#save-m" + i).value.trim() || `Macro ${i}`)); }

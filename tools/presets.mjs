@@ -19,7 +19,7 @@ const preset = (name, category, tags, macros, params) => ({
   id: "factory-" + name.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
   name,
   category,
-  author: "épices",
+  author: "epices audio",
   tags,
   macros,
   params,

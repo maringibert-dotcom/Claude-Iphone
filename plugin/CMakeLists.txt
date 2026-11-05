@@ -1,4 +1,4 @@
-# MASALA by épices — plugin VST3 / AU / Standalone (JUCE 8)
+# MASALA by epices audio — plugin VST3 / AU / Standalone (JUCE 8)
 #   cmake -B build -DCMAKE_BUILD_TYPE=Release
 #   cmake --build build --config Release
 # JUCE est téléchargé automatiquement (ou passe -DJUCE_DIR=/chemin/vers/JUCE).
@@ -23,7 +23,7 @@ if(APPLE)
 endif()
 
 juce_add_plugin(Masala
-  COMPANY_NAME "epices"
+  COMPANY_NAME "epices audio"
   COMPANY_WEBSITE "https://epices.audio"
   BUNDLE_ID "audio.epices.masala"
   PLUGIN_MANUFACTURER_CODE Epcs

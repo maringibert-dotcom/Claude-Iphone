@@ -1,13 +1,13 @@
 {
-  "name": "Masala · épices",
+  "name": "Masala · epices audio",
   "short_name": "Masala",
-  "description": "Synthé wavetable de poche pour la bass music — par épices.",
+  "description": "Synthé wavetable de poche pour la bass music — par epices audio.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#140f0b",
-  "theme_color": "#140f0b",
+  "background_color": "#1E1B16",
+  "theme_color": "#1E1B16",
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
