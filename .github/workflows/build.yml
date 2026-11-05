@@ -1,0 +1,44 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Fichiers partagés à jour
+        run: node tools/build.mjs && git diff --exit-code shared plugin/Source/ParamDefs.h
+      - name: Rendu des presets (moteur de l'appli)
+        run: node tests/render.mjs
+      - name: Parité appli ↔ plugin
+        run: node tests/parity.mjs
+
+  plugin:
+    needs: tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configurer
+        run: cmake -S plugin -B build -DCMAKE_BUILD_TYPE=Release
+      - name: Compiler
+        run: cmake --build build --config Release --parallel 4
+      - name: Rassembler les binaires
+        shell: bash
+        run: |
+          mkdir dist
+          find build -type d \( -name "*.vst3" -o -name "*.component" \) -prune -exec cp -R {} dist/ \;
+          ls -la dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Masala-${{ matrix.os }}
+          path: dist

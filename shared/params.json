@@ -1,0 +1,1397 @@
+{
+ "format": "epices.masala.params",
+ "version": 1,
+ "params": [
+  {
+   "id": "oscA.on",
+   "name": "Osc A On",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "oscA.table",
+   "name": "Osc A Table",
+   "type": "choice",
+   "min": 0,
+   "max": 5,
+   "def": 0,
+   "choices": [
+    "Basic",
+    "Growl",
+    "Vowel",
+    "Metal",
+    "Tribal",
+    "Digital"
+   ]
+  },
+  {
+   "id": "oscA.pos",
+   "name": "Osc A Position",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.66
+  },
+  {
+   "id": "oscA.semi",
+   "name": "Osc A Semi",
+   "type": "int",
+   "min": -24,
+   "max": 24,
+   "def": 0,
+   "unit": "st"
+  },
+  {
+   "id": "oscA.fine",
+   "name": "Osc A Fine",
+   "type": "float",
+   "min": -100,
+   "max": 100,
+   "def": 0,
+   "unit": "ct"
+  },
+  {
+   "id": "oscA.level",
+   "name": "Osc A Level",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.75
+  },
+  {
+   "id": "oscA.unison",
+   "name": "Osc A Unison",
+   "type": "int",
+   "min": 1,
+   "max": 7,
+   "def": 1
+  },
+  {
+   "id": "oscA.detune",
+   "name": "Osc A Detune",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.2
+  },
+  {
+   "id": "oscA.spread",
+   "name": "Osc A Spread",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.6
+  },
+  {
+   "id": "oscA.warpMode",
+   "name": "Osc A Warp Mode",
+   "type": "choice",
+   "min": 0,
+   "max": 2,
+   "def": 0,
+   "choices": [
+    "Bend",
+    "Sync",
+    "Mirror"
+   ]
+  },
+  {
+   "id": "oscA.warp",
+   "name": "Osc A Warp",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "oscB.on",
+   "name": "Osc B On",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "oscB.table",
+   "name": "Osc B Table",
+   "type": "choice",
+   "min": 0,
+   "max": 5,
+   "def": 0,
+   "choices": [
+    "Basic",
+    "Growl",
+    "Vowel",
+    "Metal",
+    "Tribal",
+    "Digital"
+   ]
+  },
+  {
+   "id": "oscB.pos",
+   "name": "Osc B Position",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.33
+  },
+  {
+   "id": "oscB.semi",
+   "name": "Osc B Semi",
+   "type": "int",
+   "min": -24,
+   "max": 24,
+   "def": 0,
+   "unit": "st"
+  },
+  {
+   "id": "oscB.fine",
+   "name": "Osc B Fine",
+   "type": "float",
+   "min": -100,
+   "max": 100,
+   "def": 0,
+   "unit": "ct"
+  },
+  {
+   "id": "oscB.level",
+   "name": "Osc B Level",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.75
+  },
+  {
+   "id": "oscB.unison",
+   "name": "Osc B Unison",
+   "type": "int",
+   "min": 1,
+   "max": 7,
+   "def": 1
+  },
+  {
+   "id": "oscB.detune",
+   "name": "Osc B Detune",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.2
+  },
+  {
+   "id": "oscB.spread",
+   "name": "Osc B Spread",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.6
+  },
+  {
+   "id": "oscB.warpMode",
+   "name": "Osc B Warp Mode",
+   "type": "choice",
+   "min": 0,
+   "max": 2,
+   "def": 0,
+   "choices": [
+    "Bend",
+    "Sync",
+    "Mirror"
+   ]
+  },
+  {
+   "id": "oscB.warp",
+   "name": "Osc B Warp",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "sub.on",
+   "name": "Sub On",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "sub.level",
+   "name": "Sub Level",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.6
+  },
+  {
+   "id": "sub.oct",
+   "name": "Sub Octave",
+   "type": "choice",
+   "min": 0,
+   "max": 1,
+   "def": 0,
+   "choices": [
+    "-1",
+    "-2"
+   ]
+  },
+  {
+   "id": "sub.shape",
+   "name": "Sub Shape",
+   "type": "choice",
+   "min": 0,
+   "max": 2,
+   "def": 0,
+   "choices": [
+    "Sine",
+    "Triangle",
+    "Square"
+   ]
+  },
+  {
+   "id": "noise.level",
+   "name": "Noise Level",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "fm.amount",
+   "name": "FM B>A",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "filter.on",
+   "name": "Filter On",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "filter.type",
+   "name": "Filter Type",
+   "type": "choice",
+   "min": 0,
+   "max": 4,
+   "def": 0,
+   "choices": [
+    "LP24",
+    "LP12",
+    "BP",
+    "HP",
+    "Notch"
+   ]
+  },
+  {
+   "id": "filter.cutoff",
+   "name": "Cutoff",
+   "type": "float",
+   "min": 20,
+   "max": 20000,
+   "def": 8000,
+   "skew": "log",
+   "unit": "Hz"
+  },
+  {
+   "id": "filter.res",
+   "name": "Resonance",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.15
+  },
+  {
+   "id": "filter.drive",
+   "name": "Filter Drive",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "filter.env",
+   "name": "Filter Env",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "filter.keytrack",
+   "name": "Keytrack",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "env1.a",
+   "name": "Amp Attack",
+   "type": "float",
+   "min": 0.0005,
+   "max": 10,
+   "def": 0.002,
+   "skew": "log",
+   "unit": "s"
+  },
+  {
+   "id": "env1.d",
+   "name": "Amp Decay",
+   "type": "float",
+   "min": 0.001,
+   "max": 10,
+   "def": 0.4,
+   "skew": "log",
+   "unit": "s"
+  },
+  {
+   "id": "env1.s",
+   "name": "Amp Sustain",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "env1.r",
+   "name": "Amp Release",
+   "type": "float",
+   "min": 0.001,
+   "max": 10,
+   "def": 0.12,
+   "skew": "log",
+   "unit": "s"
+  },
+  {
+   "id": "env2.a",
+   "name": "Mod Attack",
+   "type": "float",
+   "min": 0.0005,
+   "max": 10,
+   "def": 0.002,
+   "skew": "log",
+   "unit": "s"
+  },
+  {
+   "id": "env2.d",
+   "name": "Mod Decay",
+   "type": "float",
+   "min": 0.001,
+   "max": 10,
+   "def": 0.4,
+   "skew": "log",
+   "unit": "s"
+  },
+  {
+   "id": "env2.s",
+   "name": "Mod Sustain",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "env2.r",
+   "name": "Mod Release",
+   "type": "float",
+   "min": 0.001,
+   "max": 10,
+   "def": 0.12,
+   "skew": "log",
+   "unit": "s"
+  },
+  {
+   "id": "lfo1.shape",
+   "name": "LFO 1 Shape",
+   "type": "choice",
+   "min": 0,
+   "max": 5,
+   "def": 0,
+   "choices": [
+    "Sine",
+    "Triangle",
+    "Saw Up",
+    "Saw Down",
+    "Square",
+    "S&H"
+   ]
+  },
+  {
+   "id": "lfo1.sync",
+   "name": "LFO 1 Sync",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "lfo1.rate",
+   "name": "LFO 1 Rate",
+   "type": "float",
+   "min": 0.01,
+   "max": 30,
+   "def": 2,
+   "skew": "log",
+   "unit": "Hz"
+  },
+  {
+   "id": "lfo1.div",
+   "name": "LFO 1 Division",
+   "type": "choice",
+   "min": 0,
+   "max": 11,
+   "def": 6,
+   "choices": [
+    "4/1",
+    "2/1",
+    "1/1",
+    "1/2",
+    "1/4",
+    "1/4T",
+    "1/8",
+    "1/8T",
+    "1/8D",
+    "1/16",
+    "1/16T",
+    "1/32"
+   ]
+  },
+  {
+   "id": "lfo1.retrig",
+   "name": "LFO 1 Retrig",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "lfo2.shape",
+   "name": "LFO 2 Shape",
+   "type": "choice",
+   "min": 0,
+   "max": 5,
+   "def": 0,
+   "choices": [
+    "Sine",
+    "Triangle",
+    "Saw Up",
+    "Saw Down",
+    "Square",
+    "S&H"
+   ]
+  },
+  {
+   "id": "lfo2.sync",
+   "name": "LFO 2 Sync",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "lfo2.rate",
+   "name": "LFO 2 Rate",
+   "type": "float",
+   "min": 0.01,
+   "max": 30,
+   "def": 2,
+   "skew": "log",
+   "unit": "Hz"
+  },
+  {
+   "id": "lfo2.div",
+   "name": "LFO 2 Division",
+   "type": "choice",
+   "min": 0,
+   "max": 11,
+   "def": 6,
+   "choices": [
+    "4/1",
+    "2/1",
+    "1/1",
+    "1/2",
+    "1/4",
+    "1/4T",
+    "1/8",
+    "1/8T",
+    "1/8D",
+    "1/16",
+    "1/16T",
+    "1/32"
+   ]
+  },
+  {
+   "id": "lfo2.retrig",
+   "name": "LFO 2 Retrig",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "macro1",
+   "name": "Macro 1",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "macro2",
+   "name": "Macro 2",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "macro3",
+   "name": "Macro 3",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "macro4",
+   "name": "Macro 4",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "mod1.src",
+   "name": "Mod 1 Source",
+   "type": "choice",
+   "min": 0,
+   "max": 10,
+   "def": 0,
+   "choices": [
+    "Off",
+    "LFO 1",
+    "LFO 2",
+    "Env 2",
+    "Velocity",
+    "Macro 1",
+    "Macro 2",
+    "Macro 3",
+    "Macro 4",
+    "Mod Wheel",
+    "Note"
+   ]
+  },
+  {
+   "id": "mod1.dst",
+   "name": "Mod 1 Dest",
+   "type": "choice",
+   "min": 0,
+   "max": 21,
+   "def": 0,
+   "choices": [
+    "Off",
+    "Cutoff",
+    "Resonance",
+    "Osc A Pos",
+    "Osc B Pos",
+    "Osc A Pitch",
+    "Osc B Pitch",
+    "FM Amount",
+    "Filter Drive",
+    "Osc A Warp",
+    "Osc B Warp",
+    "Osc A Level",
+    "Osc B Level",
+    "Sub Level",
+    "Noise Level",
+    "Amp",
+    "LFO 1 Rate",
+    "LFO 2 Rate",
+    "Detune",
+    "Dist Drive",
+    "Delay Mix",
+    "Reverb Mix"
+   ]
+  },
+  {
+   "id": "mod1.amt",
+   "name": "Mod 1 Amount",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "mod2.src",
+   "name": "Mod 2 Source",
+   "type": "choice",
+   "min": 0,
+   "max": 10,
+   "def": 0,
+   "choices": [
+    "Off",
+    "LFO 1",
+    "LFO 2",
+    "Env 2",
+    "Velocity",
+    "Macro 1",
+    "Macro 2",
+    "Macro 3",
+    "Macro 4",
+    "Mod Wheel",
+    "Note"
+   ]
+  },
+  {
+   "id": "mod2.dst",
+   "name": "Mod 2 Dest",
+   "type": "choice",
+   "min": 0,
+   "max": 21,
+   "def": 0,
+   "choices": [
+    "Off",
+    "Cutoff",
+    "Resonance",
+    "Osc A Pos",
+    "Osc B Pos",
+    "Osc A Pitch",
+    "Osc B Pitch",
+    "FM Amount",
+    "Filter Drive",
+    "Osc A Warp",
+    "Osc B Warp",
+    "Osc A Level",
+    "Osc B Level",
+    "Sub Level",
+    "Noise Level",
+    "Amp",
+    "LFO 1 Rate",
+    "LFO 2 Rate",
+    "Detune",
+    "Dist Drive",
+    "Delay Mix",
+    "Reverb Mix"
+   ]
+  },
+  {
+   "id": "mod2.amt",
+   "name": "Mod 2 Amount",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "mod3.src",
+   "name": "Mod 3 Source",
+   "type": "choice",
+   "min": 0,
+   "max": 10,
+   "def": 0,
+   "choices": [
+    "Off",
+    "LFO 1",
+    "LFO 2",
+    "Env 2",
+    "Velocity",
+    "Macro 1",
+    "Macro 2",
+    "Macro 3",
+    "Macro 4",
+    "Mod Wheel",
+    "Note"
+   ]
+  },
+  {
+   "id": "mod3.dst",
+   "name": "Mod 3 Dest",
+   "type": "choice",
+   "min": 0,
+   "max": 21,
+   "def": 0,
+   "choices": [
+    "Off",
+    "Cutoff",
+    "Resonance",
+    "Osc A Pos",
+    "Osc B Pos",
+    "Osc A Pitch",
+    "Osc B Pitch",
+    "FM Amount",
+    "Filter Drive",
+    "Osc A Warp",
+    "Osc B Warp",
+    "Osc A Level",
+    "Osc B Level",
+    "Sub Level",
+    "Noise Level",
+    "Amp",
+    "LFO 1 Rate",
+    "LFO 2 Rate",
+    "Detune",
+    "Dist Drive",
+    "Delay Mix",
+    "Reverb Mix"
+   ]
+  },
+  {
+   "id": "mod3.amt",
+   "name": "Mod 3 Amount",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "mod4.src",
+   "name": "Mod 4 Source",
+   "type": "choice",
+   "min": 0,
+   "max": 10,
+   "def": 0,
+   "choices": [
+    "Off",
+    "LFO 1",
+    "LFO 2",
+    "Env 2",
+    "Velocity",
+    "Macro 1",
+    "Macro 2",
+    "Macro 3",
+    "Macro 4",
+    "Mod Wheel",
+    "Note"
+   ]
+  },
+  {
+   "id": "mod4.dst",
+   "name": "Mod 4 Dest",
+   "type": "choice",
+   "min": 0,
+   "max": 21,
+   "def": 0,
+   "choices": [
+    "Off",
+    "Cutoff",
+    "Resonance",
+    "Osc A Pos",
+    "Osc B Pos",
+    "Osc A Pitch",
+    "Osc B Pitch",
+    "FM Amount",
+    "Filter Drive",
+    "Osc A Warp",
+    "Osc B Warp",
+    "Osc A Level",
+    "Osc B Level",
+    "Sub Level",
+    "Noise Level",
+    "Amp",
+    "LFO 1 Rate",
+    "LFO 2 Rate",
+    "Detune",
+    "Dist Drive",
+    "Delay Mix",
+    "Reverb Mix"
+   ]
+  },
+  {
+   "id": "mod4.amt",
+   "name": "Mod 4 Amount",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "mod5.src",
+   "name": "Mod 5 Source",
+   "type": "choice",
+   "min": 0,
+   "max": 10,
+   "def": 0,
+   "choices": [
+    "Off",
+    "LFO 1",
+    "LFO 2",
+    "Env 2",
+    "Velocity",
+    "Macro 1",
+    "Macro 2",
+    "Macro 3",
+    "Macro 4",
+    "Mod Wheel",
+    "Note"
+   ]
+  },
+  {
+   "id": "mod5.dst",
+   "name": "Mod 5 Dest",
+   "type": "choice",
+   "min": 0,
+   "max": 21,
+   "def": 0,
+   "choices": [
+    "Off",
+    "Cutoff",
+    "Resonance",
+    "Osc A Pos",
+    "Osc B Pos",
+    "Osc A Pitch",
+    "Osc B Pitch",
+    "FM Amount",
+    "Filter Drive",
+    "Osc A Warp",
+    "Osc B Warp",
+    "Osc A Level",
+    "Osc B Level",
+    "Sub Level",
+    "Noise Level",
+    "Amp",
+    "LFO 1 Rate",
+    "LFO 2 Rate",
+    "Detune",
+    "Dist Drive",
+    "Delay Mix",
+    "Reverb Mix"
+   ]
+  },
+  {
+   "id": "mod5.amt",
+   "name": "Mod 5 Amount",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "mod6.src",
+   "name": "Mod 6 Source",
+   "type": "choice",
+   "min": 0,
+   "max": 10,
+   "def": 0,
+   "choices": [
+    "Off",
+    "LFO 1",
+    "LFO 2",
+    "Env 2",
+    "Velocity",
+    "Macro 1",
+    "Macro 2",
+    "Macro 3",
+    "Macro 4",
+    "Mod Wheel",
+    "Note"
+   ]
+  },
+  {
+   "id": "mod6.dst",
+   "name": "Mod 6 Dest",
+   "type": "choice",
+   "min": 0,
+   "max": 21,
+   "def": 0,
+   "choices": [
+    "Off",
+    "Cutoff",
+    "Resonance",
+    "Osc A Pos",
+    "Osc B Pos",
+    "Osc A Pitch",
+    "Osc B Pitch",
+    "FM Amount",
+    "Filter Drive",
+    "Osc A Warp",
+    "Osc B Warp",
+    "Osc A Level",
+    "Osc B Level",
+    "Sub Level",
+    "Noise Level",
+    "Amp",
+    "LFO 1 Rate",
+    "LFO 2 Rate",
+    "Detune",
+    "Dist Drive",
+    "Delay Mix",
+    "Reverb Mix"
+   ]
+  },
+  {
+   "id": "mod6.amt",
+   "name": "Mod 6 Amount",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "mod7.src",
+   "name": "Mod 7 Source",
+   "type": "choice",
+   "min": 0,
+   "max": 10,
+   "def": 0,
+   "choices": [
+    "Off",
+    "LFO 1",
+    "LFO 2",
+    "Env 2",
+    "Velocity",
+    "Macro 1",
+    "Macro 2",
+    "Macro 3",
+    "Macro 4",
+    "Mod Wheel",
+    "Note"
+   ]
+  },
+  {
+   "id": "mod7.dst",
+   "name": "Mod 7 Dest",
+   "type": "choice",
+   "min": 0,
+   "max": 21,
+   "def": 0,
+   "choices": [
+    "Off",
+    "Cutoff",
+    "Resonance",
+    "Osc A Pos",
+    "Osc B Pos",
+    "Osc A Pitch",
+    "Osc B Pitch",
+    "FM Amount",
+    "Filter Drive",
+    "Osc A Warp",
+    "Osc B Warp",
+    "Osc A Level",
+    "Osc B Level",
+    "Sub Level",
+    "Noise Level",
+    "Amp",
+    "LFO 1 Rate",
+    "LFO 2 Rate",
+    "Detune",
+    "Dist Drive",
+    "Delay Mix",
+    "Reverb Mix"
+   ]
+  },
+  {
+   "id": "mod7.amt",
+   "name": "Mod 7 Amount",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "mod8.src",
+   "name": "Mod 8 Source",
+   "type": "choice",
+   "min": 0,
+   "max": 10,
+   "def": 0,
+   "choices": [
+    "Off",
+    "LFO 1",
+    "LFO 2",
+    "Env 2",
+    "Velocity",
+    "Macro 1",
+    "Macro 2",
+    "Macro 3",
+    "Macro 4",
+    "Mod Wheel",
+    "Note"
+   ]
+  },
+  {
+   "id": "mod8.dst",
+   "name": "Mod 8 Dest",
+   "type": "choice",
+   "min": 0,
+   "max": 21,
+   "def": 0,
+   "choices": [
+    "Off",
+    "Cutoff",
+    "Resonance",
+    "Osc A Pos",
+    "Osc B Pos",
+    "Osc A Pitch",
+    "Osc B Pitch",
+    "FM Amount",
+    "Filter Drive",
+    "Osc A Warp",
+    "Osc B Warp",
+    "Osc A Level",
+    "Osc B Level",
+    "Sub Level",
+    "Noise Level",
+    "Amp",
+    "LFO 1 Rate",
+    "LFO 2 Rate",
+    "Detune",
+    "Dist Drive",
+    "Delay Mix",
+    "Reverb Mix"
+   ]
+  },
+  {
+   "id": "mod8.amt",
+   "name": "Mod 8 Amount",
+   "type": "float",
+   "min": -1,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "global.poly",
+   "name": "Voices",
+   "type": "int",
+   "min": 1,
+   "max": 8,
+   "def": 1
+  },
+  {
+   "id": "global.glide",
+   "name": "Glide",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0,
+   "unit": "s"
+  },
+  {
+   "id": "global.legato",
+   "name": "Legato",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "global.bend",
+   "name": "Bend Range",
+   "type": "int",
+   "min": 0,
+   "max": 24,
+   "def": 2,
+   "unit": "st"
+  },
+  {
+   "id": "global.volume",
+   "name": "Volume",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.7
+  },
+  {
+   "id": "fx.dist.on",
+   "name": "Dist On",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "fx.dist.type",
+   "name": "Dist Type",
+   "type": "choice",
+   "min": 0,
+   "max": 4,
+   "def": 0,
+   "choices": [
+    "Tube",
+    "Hard",
+    "Fold",
+    "Crush",
+    "Rectify"
+   ]
+  },
+  {
+   "id": "fx.dist.drive",
+   "name": "Dist Drive",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.3
+  },
+  {
+   "id": "fx.dist.mix",
+   "name": "Dist Mix",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "fx.comp.on",
+   "name": "Squash On",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "fx.comp.amount",
+   "name": "Squash",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.5
+  },
+  {
+   "id": "fx.comp.mix",
+   "name": "Squash Mix",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "fx.delay.on",
+   "name": "Delay On",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "fx.delay.div",
+   "name": "Delay Time",
+   "type": "choice",
+   "min": 0,
+   "max": 11,
+   "def": 8,
+   "choices": [
+    "4/1",
+    "2/1",
+    "1/1",
+    "1/2",
+    "1/4",
+    "1/4T",
+    "1/8",
+    "1/8T",
+    "1/8D",
+    "1/16",
+    "1/16T",
+    "1/32"
+   ]
+  },
+  {
+   "id": "fx.delay.fb",
+   "name": "Delay Feedback",
+   "type": "float",
+   "min": 0,
+   "max": 0.95,
+   "def": 0.35
+  },
+  {
+   "id": "fx.delay.mix",
+   "name": "Delay Mix",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.25
+  },
+  {
+   "id": "fx.delay.pingpong",
+   "name": "Ping-Pong",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 1
+  },
+  {
+   "id": "fx.reverb.on",
+   "name": "Reverb On",
+   "type": "bool",
+   "min": 0,
+   "max": 1,
+   "def": 0
+  },
+  {
+   "id": "fx.reverb.size",
+   "name": "Reverb Size",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.6
+  },
+  {
+   "id": "fx.reverb.damp",
+   "name": "Reverb Damp",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.5
+  },
+  {
+   "id": "fx.reverb.mix",
+   "name": "Reverb Mix",
+   "type": "float",
+   "min": 0,
+   "max": 1,
+   "def": 0.2
+  }
+ ],
+ "modSources": [
+  "Off",
+  "LFO 1",
+  "LFO 2",
+  "Env 2",
+  "Velocity",
+  "Macro 1",
+  "Macro 2",
+  "Macro 3",
+  "Macro 4",
+  "Mod Wheel",
+  "Note"
+ ],
+ "modDests": [
+  {
+   "name": "Off",
+   "scale": 0
+  },
+  {
+   "name": "Cutoff",
+   "scale": 96
+  },
+  {
+   "name": "Resonance",
+   "scale": 1
+  },
+  {
+   "name": "Osc A Pos",
+   "scale": 1
+  },
+  {
+   "name": "Osc B Pos",
+   "scale": 1
+  },
+  {
+   "name": "Osc A Pitch",
+   "scale": 24
+  },
+  {
+   "name": "Osc B Pitch",
+   "scale": 24
+  },
+  {
+   "name": "FM Amount",
+   "scale": 1
+  },
+  {
+   "name": "Filter Drive",
+   "scale": 1
+  },
+  {
+   "name": "Osc A Warp",
+   "scale": 1
+  },
+  {
+   "name": "Osc B Warp",
+   "scale": 1
+  },
+  {
+   "name": "Osc A Level",
+   "scale": 1
+  },
+  {
+   "name": "Osc B Level",
+   "scale": 1
+  },
+  {
+   "name": "Sub Level",
+   "scale": 1
+  },
+  {
+   "name": "Noise Level",
+   "scale": 1
+  },
+  {
+   "name": "Amp",
+   "scale": 1
+  },
+  {
+   "name": "LFO 1 Rate",
+   "scale": 4
+  },
+  {
+   "name": "LFO 2 Rate",
+   "scale": 4
+  },
+  {
+   "name": "Detune",
+   "scale": 1
+  },
+  {
+   "name": "Dist Drive",
+   "scale": 1
+  },
+  {
+   "name": "Delay Mix",
+   "scale": 1
+  },
+  {
+   "name": "Reverb Mix",
+   "scale": 1
+  }
+ ],
+ "divs": [
+  "4/1",
+  "2/1",
+  "1/1",
+  "1/2",
+  "1/4",
+  "1/4T",
+  "1/8",
+  "1/8T",
+  "1/8D",
+  "1/16",
+  "1/16T",
+  "1/32"
+ ],
+ "divBeats": [
+  16,
+  8,
+  4,
+  2,
+  1,
+  0.6666666666666666,
+  0.5,
+  0.3333333333333333,
+  0.75,
+  0.25,
+  0.16666666666666666,
+  0.125
+ ],
+ "tables": [
+  "Basic",
+  "Growl",
+  "Vowel",
+  "Metal",
+  "Tribal",
+  "Digital"
+ ],
+ "categories": [
+  "Dubstep",
+  "Riddim",
+  "Tribe",
+  "Deep / Dub",
+  "Halftime",
+  "Leads & Pads",
+  "FX"
+ ]
+}

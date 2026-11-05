@@ -1,0 +1,13 @@
+{
+  "name": "epices-masala",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MASALA by épices — synthé wavetable bass music : appli téléphone + plugin VST3/AU + compte de synchro",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "start": "node server/server.mjs",
+    "test": "node tests/render.mjs && node tests/parity.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
