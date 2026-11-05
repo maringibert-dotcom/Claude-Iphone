@@ -14,8 +14,8 @@
 
   // ───────── Chargement des données partagées ─────────
   const [spec, bank] = await Promise.all([
-    fetch("../shared/params.json").then((r) => r.json()),
-    fetch("../shared/presets/factory.json").then((r) => r.json()),
+    fetch((window.MASALA_DATA || "../shared/") + "params.json").then((r) => r.json()),
+    fetch((window.MASALA_DATA || "../shared/") + "presets/factory.json").then((r) => r.json()),
   ]);
   const store = new Store(spec);
   const D = {};
@@ -537,7 +537,8 @@
         const del = el("button", "del", "×");
         del.onclick = async (e) => {
           e.stopPropagation();
-          if (!confirm(`Supprimer « ${p.name} » ?`)) return;
+          // deux appuis pour confirmer (les boîtes de dialogue sont bloquées dans certaines vues)
+          if (!del.classList.contains("armed")) { del.classList.add("armed"); del.textContent = "Supprimer ?"; setTimeout(() => { del.classList.remove("armed"); del.textContent = "×"; }, 2500); return; }
           p.deleted = true; p.updatedAt = Date.now();
           if (Cloud.loggedIn) { try { await Cloud.remove(p.id); } catch {} }
           userPresets = userPresets.filter((x) => x.id !== p.id);
@@ -655,6 +656,7 @@
     } catch (e) { status(e.message); }
   };
   renderAccount();
+  if (window.MASALA_DEMO) $("#btn-account").hidden = true; // version d'essai sans serveur
 
   // ───────── Clavier ─────────
   let octave = +(localStorage.getItem("masala.oct") || 2);

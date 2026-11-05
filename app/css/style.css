@@ -192,6 +192,7 @@ select.pill { appearance: none; -webkit-appearance: none; padding: 7px 12px; }
 .preset-item.current { background: var(--noir-3); }
 .preset-item .tag { font-size: 10px; font-weight: 700; color: var(--orange); border: 1.5px solid currentColor; border-radius: 999px; padding: 1px 6px; }
 .preset-item .del { border: 0; background: transparent; color: var(--muted); font-size: 20px; padding: 4px 8px; }
+.preset-item .del.armed { font-size: 12px; font-weight: 800; color: var(--noir); background: var(--orange); border-radius: 999px; }
 .sheet-foot { padding-top: 10px; display: flex; gap: 8px; }
 .field { display: block; font-size: 12px; font-weight: 700; color: var(--sable); margin: 10px 0; }
 .field input, .field select { display: block; width: 100%; margin-top: 5px; background: var(--encre); border: 0; border-radius: 14px; padding: 11px 12px; font-size: 16px; font-weight: 500; color: var(--papier); }
