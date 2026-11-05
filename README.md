@@ -5,7 +5,7 @@ dans la DA **epices audio** : orange `#F2541B`, noir `#1E1B16`, police Bricolage
 anneaux (repris dans les potards : un anneau et un point qui indique la valeur). Fichiers de marque dans `app/brand/`.
 
 On fait son sound design sur le téléphone, on enregistre, et le preset arrive dans le plugin **VST3 / AU**
-pour Ableton, Logic, FL Studio… grâce au compte épices.
+pour Ableton, Logic, FL Studio… grâce au compte epices.
 
 ```
 ┌──────────────────────┐   presets .masala (JSON)   ┌──────────────────────┐
