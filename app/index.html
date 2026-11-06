@@ -90,7 +90,7 @@
       <div class="splash-product">epices audio</div>
       <p>Synthé wavetable de poche pour la bass music.</p>
       <button id="start" class="cta">Toucher pour allumer</button>
-      <small>Astuce iPhone : désactive le mode silencieux pour entendre le son.</small>
+      <small class="web-only">Astuce iPhone : si tu n'entends rien, désactive le mode silencieux.</small>
     </div>
   </div>
 
@@ -152,8 +152,15 @@
         <button class="pill" id="acc-pair">Générer un code</button>
         <div id="pair-code" class="pair-code"></div>
       </div>
+      <details class="danger">
+        <summary>Supprimer mon compte</summary>
+        <p class="hint">Efface ton compte et tous tes presets du serveur. Les presets restent sur ce téléphone.</p>
+        <label class="field">Mot de passe<input id="del-pass" type="password" autocomplete="current-password"></label>
+        <button class="pill danger-btn" id="acc-delete">Supprimer définitivement</button>
+      </details>
     </div>
     <p class="hint" id="acc-status"></p>
+    <p class="hint legal"><a href="privacy.html" id="privacy-link">Politique de confidentialité</a></p>
   </div>
 
   <div id="toast" class="toast"></div>

@@ -1,0 +1,13 @@
+{
+  "appId": "audio.epices.masala",
+  "appName": "Masala",
+  "webDir": "www",
+  "backgroundColor": "#1E1B16",
+  "ios": {
+    "contentInset": "never",
+    "scrollEnabled": false,
+    "backgroundColor": "#1E1B16",
+    "preferredContentMode": "mobile",
+    "limitsNavigationsToAppBoundDomains": false
+  }
+}

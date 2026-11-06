@@ -4,3 +4,4 @@ server/data/
 plugin/build/
 build/
 .DS_Store
+www/

@@ -29,6 +29,7 @@
 
   async function startAudio() {
     if (ctx) { if (ctx.state !== "running") await ctx.resume(); return; }
+    try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch {} // son même en mode silencieux
     ctx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: "interactive" });
     // iOS : un buffer silencieux joué pendant le geste débloque la sortie
     const b = ctx.createBuffer(1, 1, ctx.sampleRate), s = ctx.createBufferSource();
@@ -585,7 +586,19 @@
     readMacroInputs();
     const name = $("#save-name").value.trim() || "Sans titre";
     const pr = serialize({ id: (current && !current.id.startsWith("factory-") ? current.id : "user-" + Date.now().toString(36)), name, category: catSel.value });
-    const file = new File([JSON.stringify(pr, null, 1)], name.replace(/[^\w\- ]+/g, "_") + ".masala", { type: "application/json" });
+    const text = JSON.stringify(pr, null, 1);
+    const fname = name.replace(/[^\w\- ]+/g, "_") + ".masala";
+    const native = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform();
+    if (native) {
+      // appli iOS : écrit le fichier puis ouvre la feuille de partage (AirDrop, Fichiers, Mail…)
+      try {
+        const { Filesystem, Share } = window.Capacitor.Plugins;
+        const w = await Filesystem.writeFile({ path: fname, data: text, directory: "CACHE", encoding: "utf8" });
+        await Share.share({ title: name, files: [w.uri] });
+      } catch (err) { if (!/cancel/i.test(String(err && err.message))) toast("Export impossible : " + err.message); }
+      return;
+    }
+    const file = new File([text], fname, { type: "application/json" });
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try { await navigator.share({ files: [file], title: name }); return; } catch {}
     }
@@ -649,6 +662,21 @@
     } catch (e) { status("Échec : " + e.message); }
   }
   $("#acc-sync").onclick = doSync;
+  $("#acc-delete").onclick = async (e) => {
+    const b = e.currentTarget;
+    if (!b.classList.contains("armed")) {
+      b.classList.add("armed"); b.textContent = "Confirmer la suppression";
+      setTimeout(() => { b.classList.remove("armed"); b.textContent = "Supprimer définitivement"; }, 4000);
+      return;
+    }
+    status("Suppression…");
+    try {
+      await Cloud.deleteAccount($("#del-pass").value);
+      $("#del-pass").value = "";
+      renderAccount();
+      status("Compte supprimé. Tes presets restent sur ce téléphone.");
+    } catch (err) { status(err.message); }
+  };
   $("#acc-pair").onclick = async () => {
     try {
       const r = await Cloud.pairCode();
@@ -809,6 +837,8 @@
   };
 
   // ───────── Démarrage ─────────
+  if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())
+    document.querySelectorAll(".web-only").forEach((e) => (e.hidden = true));
   const startId = localStorage.getItem("masala.current");
   applyPreset(allPresets().find((p) => p.id === startId) || bank.presets.find((p) => p.name === "Harissa Wobble") || bank.presets[0]);
   requestAnimationFrame(frame);
@@ -822,7 +852,7 @@
     }
   };
 
-  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http") && !window.Capacitor && !window.MASALA_DATA) {
     navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 })();

@@ -218,3 +218,10 @@ select.pill { appearance: none; -webkit-appearance: none; padding: 7px 12px; }
   .keys { height: 92px; }
   .knob svg { width: 48px; height: 48px; }
 }
+
+/* suppression de compte, lien légal */
+details.danger { margin-top: 18px; border-top: 1px solid var(--noir-3); padding-top: 12px; }
+details.danger summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--muted); }
+.danger-btn.armed { background: var(--orange); color: var(--noir); }
+.legal a { color: var(--sable); }
+#sheet-account, #sheet-save { overflow-y: auto; -webkit-overflow-scrolling: touch; }

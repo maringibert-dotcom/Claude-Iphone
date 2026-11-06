@@ -12,7 +12,9 @@
     state: load(),
     get loggedIn() { return !!this.state.token; },
     get server() {
-      return (this.state.server || (location.protocol.startsWith("http") ? location.origin : "")).replace(/\/+$/, "");
+      // ordre : serveur choisi par l'utilisateur, serveur intégré à l'appli iOS, puis l'origine de la page
+      const fallback = window.MASALA_SERVER || (location.protocol.startsWith("http") ? location.origin : "");
+      return (this.state.server || fallback).replace(/\/+$/, "");
     },
     setServer(url) { this.state.server = url.trim(); save(this.state); },
 
@@ -51,6 +53,10 @@
     put(preset) { return this.api("PUT", "/presets/" + encodeURIComponent(preset.id), preset); },
     remove(id) { return this.api("DELETE", "/presets/" + encodeURIComponent(id)); },
     pairCode() { return this.api("POST", "/pair"); },
+    async deleteAccount(password) {
+      await this.api("DELETE", "/me", { password });
+      this.logout();
+    },
 
     // Fusion bidirectionnelle : le plus récent (updatedAt) gagne.
     async sync(localPresets) {

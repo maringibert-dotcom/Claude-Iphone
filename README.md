@@ -88,7 +88,9 @@ cmake --build build --config Release
 tools/params.mjs      ← source unique des 102 paramètres
 tools/presets.mjs     ← banque d'usine
 tools/build.mjs       → shared/params.json, shared/presets/factory.json, plugin/Source/ParamDefs.h
-app/                  appli téléphone (PWA, sans dépendances)
+app/                  appli téléphone (web, sans dépendances)
+ios/                  projet Xcode de l'appli iOS (Capacitor), alimenté par www/
+tools/build-web.mjs   → www/ (appli embarquée : données locales, police intégrée)
 server/server.mjs     compte, presets cloud, appairage (Node ≥ 18, sans dépendances)
 plugin/               plugin JUCE (CMake)
 tests/                rendu hors-ligne + parité JS ↔ C++
@@ -96,11 +98,43 @@ tests/                rendu hors-ligne + parité JS ↔ C++
 
 Après modification des paramètres ou des presets : `npm run build && npm test`.
 
+## Appli iOS (App Store)
+
+L'appli iPhone est construite à partir du même dossier `app/` (Capacitor) : toute modification du synthé
+ou de l'interface passe dans l'appli iOS à la prochaine compilation.
+
+```bash
+npm install
+npm run ios:sync     # prépare www/ (police intégrée, données locales) et met à jour ios/
+npm run ios:open     # ouvre le projet dans Xcode (sur Mac)
+```
+
+Dans l'appli native : le son sort même en mode silencieux, tout fonctionne hors-ligne, l'export
+`.masala` ouvre la feuille de partage iOS (AirDrop, Fichiers…). Le serveur du compte est intégré
+à la compilation via la variable `MASALA_SERVER` (sinon l'utilisateur le saisit dans « Compte »).
+
+### Publier sans Mac (GitHub Actions → TestFlight)
+
+1. **Compte Apple Developer** (99 €/an) sur developer.apple.com.
+2. **App Store Connect → Apps → +** : nouvelle appli iOS, identifiant de lot `audio.epices.masala`
+   (à créer d'abord dans *Certificates, Identifiers & Profiles → Identifiers* s'il n'est pas proposé).
+3. **App Store Connect → Utilisateurs et accès → Intégrations → Clés API** : crée une clé avec le rôle
+   *Admin*, télécharge le fichier `AuthKey_XXXX.p8` (téléchargeable une seule fois).
+4. Sur GitHub, **Settings → Secrets and variables → Actions**, ajoute les secrets
+   `APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8` (contenu du .p8), et la variable
+   `MASALA_SERVER` (adresse HTTPS de ton serveur de compte).
+5. **Actions → ios → Run workflow** (case TestFlight cochée). La version arrive dans TestFlight :
+   installe l'appli TestFlight sur ton iPhone pour l'essayer.
+6. Quand elle te va : complète la fiche (captures, description, politique de confidentialité
+   `…/app/privacy.html`, questionnaire de confidentialité, classification) et **soumets à la validation**.
+
+Avant la soumission : compléter l'adresse de contact dans `app/privacy.html`, mettre le serveur
+en ligne en HTTPS, et ne citer aucun artiste ni marque (Serum…) dans la fiche App Store.
+
 ## Pistes pour la suite
 
-- **App Store** : la PWA est la voie la plus rapide pour tester sur iPhone. Pour une vraie appli iOS
-  (et un **AUv3** utilisable dans GarageBand / Cubasis), le moteur C++ et `PluginEditor` se réutilisent
-  tels quels dans une cible JUCE iOS/AUv3.
+- **AUv3** (MASALA dans GarageBand, AUM, Cubasis) : le moteur C++ du plugin se réutilise dans une
+  cible JUCE iOS/AUv3, avec une interface tactile.
 - Embarquer la police Bricolage Grotesque (licence OFL) dans le plugin : pour l'instant il utilise la police
   système, l'appli la charge depuis Google Fonts. Couleurs centralisées dans `app/css/style.css` (`:root`)
   et `epices::` dans `PluginEditor.h`.

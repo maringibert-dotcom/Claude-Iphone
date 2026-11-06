@@ -7,6 +7,7 @@
 //   POST   /api/register      {email, password}        → {token, email}
 //   POST   /api/login         {email, password}        → {token, email}
 //   GET    /api/me                                     → {email}
+//   DELETE /api/me            {password}               → {ok}   (supprime le compte et ses données)
 //   GET    /api/presets                                → {presets:[…]}
 //   PUT    /api/presets/:id   preset                   → {ok, preset}
 //   DELETE /api/presets/:id                            → {ok}
@@ -161,6 +162,19 @@ async function api(req, res, path) {
   const user = db.users[email];
 
   if (path === "/me" && m === "GET") return send(res, 200, { email, presets: Object.keys(user.presets).length });
+
+  // Suppression du compte (exigée par l'App Store) : mot de passe requis,
+  // efface l'utilisateur, ses presets, ses sessions et ses codes d'appairage.
+  if (path === "/me" && m === "DELETE") {
+    if (limited(ip, 10)) return send(res, 429, { error: "Trop de tentatives." });
+    const { password } = await body(req);
+    if (typeof password !== "string" || !checkPassword(password, user)) return send(res, 403, { error: "Mot de passe incorrect." });
+    delete db.users[email];
+    for (const [k, s] of Object.entries(db.sessions)) if (s.email === email) delete db.sessions[k];
+    for (const [k, p] of Object.entries(db.pairs)) if (p.email === email) delete db.pairs[k];
+    await persist();
+    return send(res, 200, { ok: true });
+  }
 
   if (path === "/pair" && m === "POST") {
     for (const [k, v] of Object.entries(db.pairs)) if (v.expires < Date.now()) delete db.pairs[k];
