@@ -172,9 +172,15 @@ void WaveView::paint (juce::Graphics& g)
             i ? p.lineTo (x, y) : p.startNewSubPath (x, y);
         }
         g.setColour (col);
-        g.strokePath (p, juce::PathStrokeType (thick));
+        g.strokePath (p, juce::PathStrokeType (thick, juce::PathStrokeType::curved, juce::PathStrokeType::rounded));
     };
-    for (int f = 7; f >= 0; f--) drawFrame (f / 7.0f, f * 5.0f, -f * 4.0f, epices::noir3, 1.2f);
+    // frames de fond en brume : couches larges et très transparentes, estompées avec la profondeur
+    for (int f = 7; f >= 0; f--)
+    {
+        const float depth = 1.0f - f / 9.0f;
+        for (auto [lw, a] : { std::pair { 10.0f, 0.018f }, std::pair { 6.0f, 0.025f }, std::pair { 3.0f, 0.03f } })
+            drawFrame (f / 7.0f, f * 5.0f, -f * 4.0f, epices::papier.withAlpha (a * depth), lw);
+    }
     const auto col = isA ? epices::orange : epices::papier;
     drawFrame (pos, pos * 35, -pos * 28, col, 3.0f);
     g.setColour (epices::muted);
@@ -221,6 +227,7 @@ ParamGroup::ParamGroup (MasalaProcessor& p, juce::String t, juce::Colour a, juce
         {
             auto s = std::make_unique<juce::Slider> (juce::Slider::RotaryHorizontalVerticalDrag, juce::Slider::TextBoxBelow);
             s->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 70, 16);
+            s->setMouseDragSensitivity (400); // réglage plus fin (même ressenti que l'appli)
             s->setColour (juce::Slider::trackColourId, accent);
             s->setDoubleClickReturnValue (true, d->def);
             it.sa = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (p.apvts, d->id, *s);
@@ -327,6 +334,7 @@ MasalaEditor::MasalaEditor (MasalaProcessor& p) : AudioProcessorEditor (p), proc
     {
         macro[m].setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
         macro[m].setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
+        macro[m].setMouseDragSensitivity (400);
         // macros : comme le symbole « orange, anneaux noirs »
         macro[m].setColour (juce::Slider::trackColourId, mc[m]);
         macro[m].setColour (juce::Slider::thumbColourId, epices::orange);

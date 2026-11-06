@@ -107,7 +107,7 @@
     // glisser sur l'écran = position de la table
     let pid = null, sx = 0, sp = 0;
     cv.addEventListener("pointerdown", (e) => { pid = e.pointerId; cv.setPointerCapture(pid); sx = e.clientX; sp = store.get(p + "pos"); });
-    cv.addEventListener("pointermove", (e) => { if (e.pointerId === pid) store.set(p + "pos", sp + (e.clientX - sx) / cv.clientWidth); });
+    cv.addEventListener("pointermove", (e) => { if (e.pointerId === pid) store.set(p + "pos", sp + (e.clientX - sx) / (cv.clientWidth * 2)); });
     cv.addEventListener("pointerup", () => (pid = null));
     c.appendChild(row(mini("Warp"), Seg(store, p + "warpMode")));
     c.appendChild(knobRow("", K(p + "pos", "Position"), K(p + "level", "Niveau"), K(p + "semi", "Demi-ton"), K(p + "fine", "Fin"),
@@ -136,9 +136,9 @@
     filterCanvas.addEventListener("pointermove", (e) => {
       if (e.pointerId !== pid) return;
       const d = store.defs["filter.cutoff"];
-      const n = Math.min(1, Math.max(0, sc + (e.clientX - sx) / filterCanvas.clientWidth));
+      const n = Math.min(1, Math.max(0, sc + (e.clientX - sx) / (filterCanvas.clientWidth * 2)));
       store.set("filter.cutoff", d.min * Math.pow(d.max / d.min, n));
-      store.set("filter.res", sr + (sy - e.clientY) / 150);
+      store.set("filter.res", sr + (sy - e.clientY) / 300);
     });
     filterCanvas.addEventListener("pointerup", () => (pid = null));
     c.appendChild(knobRow("five", K("filter.cutoff", "Cutoff"), K("filter.res", "Réso"), K("filter.drive", "Drive"), K("filter.env", "Env 2"), K("filter.keytrack", "Key")));
@@ -291,6 +291,7 @@
   const COL = {};
   ["--orange", "--papier", "--line", "--muted", "--noir-3"].forEach((v) => (COL[v] = css(v)));
 
+  const HAZE = [[10, 0.018], [6, 0.025], [3, 0.03]]; // [épaisseur, opacité] des couches de brume
   const mval = (dest) => (liveMod ? liveMod[D[dest]] || 0 : 0);
 
   function drawWave(o) {
@@ -304,7 +305,9 @@
     const pos = Math.min(1, Math.max(0, store.get(p + "pos") + mval(`Osc ${o} Pos`)));
     const warp = Math.min(1, Math.max(0, store.get(p + "warp") + mval(`Osc ${o} Warp`)));
     const N = 160;
-    // frames empilées en perspective
+    // frames empilées en perspective, en brume : traits larges et très transparents,
+    // sans contour net, qui s'estompent avec la profondeur
+    g.lineJoin = "round"; g.lineCap = "round"; g.strokeStyle = COL["--papier"];
     for (let fr = 7; fr >= 0; fr--) {
       const d = preview.framePreview(table, fr / 7, wm, warp, N);
       const ox = fr * 5, oy = -fr * 4;
@@ -313,7 +316,8 @@
         const x = 14 + ox + (i / (N - 1)) * (w - 64), y = h * 0.58 + oy - d[i] * h * 0.3;
         i ? g.lineTo(x, y) : g.moveTo(x, y);
       }
-      g.strokeStyle = COL["--noir-3"]; g.globalAlpha = 1; g.lineWidth = 1.2; g.stroke();
+      const depth = 1 - fr / 9;
+      for (const [lw, a] of HAZE) { g.lineWidth = lw; g.globalAlpha = a * depth; g.stroke(); }
     }
     g.globalAlpha = 1;
     const d = preview.framePreview(table, pos, wm, warp, N);
