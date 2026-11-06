@@ -227,7 +227,6 @@ ParamGroup::ParamGroup (MasalaProcessor& p, juce::String t, juce::Colour a, juce
         {
             auto s = std::make_unique<juce::Slider> (juce::Slider::RotaryHorizontalVerticalDrag, juce::Slider::TextBoxBelow);
             s->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 70, 16);
-            s->setMouseDragSensitivity (400); // réglage plus fin (même ressenti que l'appli)
             s->setColour (juce::Slider::trackColourId, accent);
             s->setDoubleClickReturnValue (true, d->def);
             it.sa = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (p.apvts, d->id, *s);
@@ -334,7 +333,6 @@ MasalaEditor::MasalaEditor (MasalaProcessor& p) : AudioProcessorEditor (p), proc
     {
         macro[m].setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
         macro[m].setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
-        macro[m].setMouseDragSensitivity (400);
         // macros : comme le symbole « orange, anneaux noirs »
         macro[m].setColour (juce::Slider::trackColourId, mc[m]);
         macro[m].setColour (juce::Slider::thumbColourId, epices::orange);

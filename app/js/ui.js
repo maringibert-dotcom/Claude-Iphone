@@ -117,8 +117,7 @@
     });
     root.addEventListener("pointermove", (e) => {
       if (e.pointerId !== pid) return;
-      // distance de glissement (px) pour parcourir toute la course : assez longue pour un réglage fin au doigt
-      const range = d.type === "float" ? 360 : Math.max(180, (d.max - d.min) * 14);
+      const range = d.type === "float" ? 200 : Math.max(120, (d.max - d.min) * 10);
       store.set(id, fromNorm(d, startN + (startY - e.clientY) / range));
     });
     const end = (e) => { if (e.pointerId === pid) { pid = null; root.classList.remove("active"); } };
